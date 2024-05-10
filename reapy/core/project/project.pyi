@@ -1029,6 +1029,23 @@ class Project(ReapyObject):
         Project.solo_all_tracks
         """
         ...
+    
+    def import_media(self, filepath:str, track_id: str) -> reapy.Item:
+        """
+		Imports a file and place the media on a track.
+		Parameters
+		----------
+		filepath : str
+			Filepath to the file to import (relative to the REAPER project)
+        track_id : str
+            Track ID where the media will be placed.
+		Returns
+		-------
+		item : Item
+			New imported item
+		"""
+        ...
+
 
 
 class _MakeCurrentProject:

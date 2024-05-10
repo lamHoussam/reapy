@@ -1225,6 +1225,8 @@ class Project(ReapyObject):
         """
         with self.make_current_project():
             RPR.SoloAllTracks(0)
+    
+    
 
 
 class _MakeCurrentProject:
