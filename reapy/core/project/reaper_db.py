@@ -1,4 +1,5 @@
 import os
+import random
 
 class ReaperDB:
     def __init__(self, reaper_path: str):
@@ -61,5 +62,18 @@ class ReaperDB:
                     audio_files.append(line.split("\"")[1])
         
         return audio_files
+    
+    def get_random_file_from_db(self, db_name: str) -> str:
+        audio_files = self.get_audiofiles_from_db(db_name)
+        if audio_files is None:
+            return None
         
+        return random.choice(audio_files)
+        
+    def get_n_random_files_from_db(self, db_name: str, n: int) -> list[str]:
+        audio_files = self.get_audiofiles_from_db(db_name)
+        if audio_files is None or n > len(audio_files):
+            return None
+        
+        return random.sample(audio_files, n)
     

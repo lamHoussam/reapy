@@ -25,3 +25,13 @@ class ReaperDB:
         """
         """
         ...
+
+    def get_random_file_from_db(self, db_name: str) -> str:
+        """
+        """
+        ...
+
+    def get_n_random_files_from_db(self, db_name: str, n: int) -> list[str]:
+        """
+        """
+        ...
