@@ -1226,8 +1226,47 @@ class Project(ReapyObject):
         with self.make_current_project():
             RPR.SoloAllTracks(0)
     
-    
 
+    def insert_media(self, filepath, mode):
+        """
+		Imports a file and place the media on a track.
+		Parameters
+		----------
+		filepath : str
+			Filepath to the file to import (relative to the REAPER project)
+		mode: int
+            Mode
+		"""
+        RPR.InsertMedia(filepath, mode)
+
+    
+    def import_media(self, filepath, track_id):
+        """
+		Imports a file and place the media on a track.
+		Parameters
+		----------
+		filepath : str
+			Filepath to the file to import (relative to the REAPER project)
+		addToSelectedTrack : bool, optional
+			Instead of creating a new track, a new track will be created.
+		Returns
+		-------
+		item : Item
+			New imported item
+		"""
+        insertMode = 1-int(addToSelectedTrack)
+		#if no track is selected
+        if addToSelectedTrack and not len(self.selected_tracks):
+            raise IndexError("No track is selected")
+        #import media
+        RPR.InsertMedia(filepath, insertMode)
+        selectedTrack = self.selected_tracks[0]
+		#even if the file doesn't exists, an item is created, but it's length is 0.0
+        item = selectedTrack.items[0]
+        return item
+
+    # def import_media_into_track(self, filepath:str, track_id: str) -> reapy.Item:
+    #     pass
 
 class _MakeCurrentProject:
 

@@ -4,7 +4,7 @@ from .audio_accessor import AudioAccessor
 from .envelope import Envelope, EnvelopeList
 from .fx import FX, FXList, FXParam, FXParamsList
 from .item import CC, CCList, Item, Note, NoteList, Source, Take
-from .project import Marker, Project, Region, TimeSelection
+from .project import Marker, Project, Region, TimeSelection, ReaperDB
 from .track import AutomationItem, Send, Track, TrackList
 from .window import MIDIEditor, ToolTip, Window
 
@@ -37,6 +37,7 @@ __all__ = [
     "Project",
     "Region",
     "TimeSelection",
+    "ReaperDB",
     # core.track
     "AutomationItem",
     "Send",
