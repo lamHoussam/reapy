@@ -15,3 +15,13 @@ class ReaperDB:
         """
         """
         ...
+    
+    def get_audio_filepath_from_db(self, db_name: str, file_name: str) -> str:
+        """
+        """
+        ...
+
+    def get_audiofiles_from_db(self, db_name: str) -> list[str]:
+        """
+        """
+        ...

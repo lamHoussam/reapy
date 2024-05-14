@@ -28,5 +28,38 @@ class ReaperDB:
         
         print("DBs: ", self.name2file)
         return self.name2file
+    
+    def get_audio_filepath_from_db(self, db_name: str, file_name: str) -> str:
+        if db_name not in self.name2file:
+            return None
 
+        db_file = self.name2file[db_name]
+        return_file_path = None
+        with open(db_file, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+            for line in lines:
+                if line.startswith("FILE"):
+                    return_file_path = line.split("\"")[1]
+                if line.startswith("DATA") and "\"" in line:
+                    file_name_in_line = line.split("\"", 2)[1]
+                    splitted_file_name = file_name_in_line.split(":")
+                    if splitted_file_name[0] == "t" and (file_name == splitted_file_name[1] or file_name + ".wav" == splitted_file_name[1]):
+                        return return_file_path
+
+        return None
+    
+    def get_audiofiles_from_db(self, db_name: str) -> list[str]:
+        if db_name not in self.name2file:
+            return None
+
+        db_file = self.name2file[db_name]
+        audio_files = []
+        with open(db_file, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+            for line in lines:
+                if line.startswith("FILE"):
+                    audio_files.append(line.split("\"")[1])
+        
+        return audio_files
+        
     

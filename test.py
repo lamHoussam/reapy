@@ -13,6 +13,9 @@ def create_tracks_with_audio(audio_file_paths):
 def test_get_dbs():
     reaper_path = "C:\\Users\\houss\\AppData\\Roaming\\REAPER"
     db = reapy.ReaperDB(reaper_path)
+    # file = db.get_audio_filepath_from_db("DB_Test_01", "NP01 0001 Trans motorcycle pass.wav")
+    files = db.get_audiofiles_from_db("DB_Test_01")
+    print('\n'.join(files))
 
 # List of audio file paths
 
